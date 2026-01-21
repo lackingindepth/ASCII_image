@@ -1,3 +1,5 @@
+import os
+
 from PIL import Image # Biblioteca para manipulação de imagens
 from tkinter import Tk # Biblioteca para interface gráfica
 from tkinter.filedialog import askopenfilename # Função para abrir diálogo de seleção de arquivo
@@ -45,9 +47,13 @@ if caminho_do_arquivo:
         if (i + 1) % nova_largura == 0: 
             ascii_str += "\n"
 
-    # Salva a string ASCII em um arquivo de texto
-    with open("imagem_ascii.txt", "w") as arquivo_txt:
+    # Salva a string ASCII em um arquivo de texto com o mesmo nome da imagem
+    nome_arquivo = os.path.splitext(os.path.basename(caminho_do_arquivo))[0]
+    caminho_saida = f"{nome_arquivo}_ascii.txt"
+    
+    # Escreve a string ASCII no arquivo de texto
+    with open(caminho_saida, "w") as arquivo_txt:
         arquivo_txt.write(ascii_str)
 
-    print("Imagem ASCII salva em 'imagem_ascii.txt'")
+    print(f"Imagem ASCII salva em '{caminho_saida}'")
 
